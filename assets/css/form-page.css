@@ -163,3 +163,8 @@ p{
         color: #fff;
     }
 }
+
+.danger{
+    text-align: center;
+    color: #dc3545;
+}

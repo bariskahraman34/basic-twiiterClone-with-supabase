@@ -3,14 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
     <script src="assets/js/app.js" defer></script>
     <title>Anasayfa</title>
     
 </head>
 <body>
-    <h1>Giriş Yaptınız!</h1>
-
-    <button id="logout">Çıkış Yap</button>
+    <header>
+        <a href="#" id="log-out-btn"><i class="fa-solid fa-right-from-bracket"></i>Çıkış Yap</a>
+    </header>
+    <main>
+        <div class="container">
+            <div class="user-container section">
+                <h3>boriskahra</h3>
+            </div>
+            <div class="form-card section">
+                <div class="user-input">
+                    <form id="user-post-form">
+                        <textarea name="post" id="textarea" rows="1" placeholder="What is happening?" maxlength="600"></textarea>
+                    </form>
+                </div>
+                <div class="form-btn-container">
+                    <button class="form-btn">POST</button>
+                </div>
+            </div>
+            <div class="posts section"></div>
+        </div>
+    </main>
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </body>
