@@ -50,9 +50,16 @@ if(loginForm){
         e.preventDefault();
         const formData = new FormData(e.target);
         const formObj = Object.fromEntries(formData);
-        const { data, error } = await _supabase.auth.signInWithPassword(formObj)
+        const { data, error } = await _supabase.auth.signInWithPassword(formObj);
+        console.log(data.user === null);
         if(data.session !== null){
             window.location.href = "/index.html"
+        }else{
+            const formBox = document.querySelector('.form-box');
+            const errorMessage = `
+            <p class="danger">Bu kullanıcı mevcut değil!</p>
+            `
+            formBox.insertAdjacentHTML('beforeend',errorMessage)
         }
     })
 }
