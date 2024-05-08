@@ -15,6 +15,16 @@ a{
     text-decoration: none;
 }
 
+#log-out-btn{
+    background: #5357B6;
+    color: #fff;
+    border: none;
+    transition: all .2s ease;
+    &:hover{
+        background:#c5c6ef;
+    }
+}
+
 .container{
     max-width: 730px;
     margin-inline: auto;
@@ -66,6 +76,10 @@ header{
     }
 }
 
+button{
+    cursor: pointer;
+}
+
 textarea{
     display:block;
     box-sizing: border-box;
@@ -81,6 +95,12 @@ textarea{
     font-size: 1.4em;
     color: #1f293a;
     min-height: 100px;
+    transition: all .3s ease;
+}
+
+textarea:focus {
+    border-color: #5357B6;
+    box-shadow: 0 0 10px #5357B6;
 }
 
 /* Post Styling */
@@ -220,4 +240,19 @@ b{
 
 .content{
     color: #000;
+}
+
+.replies-container .profile-info{
+    display: flex;
+    justify-content: space-between;
+}
+
+.replies-container .profile-info .user-infos{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.replies-container .comment-header{
+    display: block;
 }
