@@ -10,12 +10,12 @@ const handleAuthStateChange = async (event, session) => {
     if (event === 'SIGNED_IN') {
         let counter = 2;
         setInterval(() => {
-            container.innerHTML = `<div class="redirect"><h3>Anasayfaya Yönlendiriliyorsunuz... ${counter}</h3></div>`;
+            container.innerHTML = `<div class="redirect"><h3>Anasayfaya Yönlendiriliyorsunuz...  ${counter}</h3></div>`;
             counter--;
         },800)
         setTimeout(() => {
             window.location.href = "index.html";
-        },2000)
+        },3000)
     }
 };
 
