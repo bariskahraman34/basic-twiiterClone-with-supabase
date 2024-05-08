@@ -210,6 +210,9 @@ function createReplyForm(e){
         </div>
     </div>
     `;
+    if(document.querySelector('.new-reply-comment')){
+        document.querySelector('.new-reply-comment').remove();
+    }
     const currentComment = document.querySelector(`.post-container[data-commentid="${this.dataset.commentid}"]`);
     currentComment.insertAdjacentHTML('afterend',replyFormHTML);
     const replyForm = document.querySelector('#reply-form');
