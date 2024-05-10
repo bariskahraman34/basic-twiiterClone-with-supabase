@@ -78,6 +78,9 @@ async function listPosts(){
     userContainer.innerHTML = `<h3>Hoşgeldin @${userSession.session.user.user_metadata.username}!</h3>`;
     postsContainer.innerHTML = "<h3>Gönderiler</h3>";
     if(posts.length > 0){
+        posts.sort(function(a,b){
+            return a.id - b.id;
+        })
         posts.forEach(post => {
             postsContainer.innerHTML += 
             `
