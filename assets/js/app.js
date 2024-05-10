@@ -79,7 +79,7 @@ async function listPosts(){
     postsContainer.innerHTML = "<h3>Gönderiler</h3>";
     if(posts.length > 0){
         posts.sort(function(a,b){
-            return a.id - b.id;
+            return b.id - a.id;
         })
         posts.forEach(post => {
             postsContainer.innerHTML += 
