@@ -24,7 +24,7 @@
             <div class="form-card section">
                 <div class="user-input">
                     <form id="user-post-form">
-                        <textarea name="post" id="textarea" rows="1" placeholder="Neler oluyor?" maxlength="600"></textarea>
+                        <textarea name="post" id="textarea" rows="1" placeholder="Neler oluyor?" maxlength="600" required></textarea>
                         <div class="form-btn-container">
                             <button type="submit" class="form-btn">Gönder</button>
                         </div>
@@ -47,6 +47,15 @@
         <div></div>    
         <div></div>    
         <div></div>    
+    </div>
+    <div class="overlay d-none">
+        <div class="dialog">
+            <h2>Bu içeriği silmek istediğinizden emin misiniz?</h2>
+            <div class="btn-container">
+                <button class="primary confirm-btn" value="yes">Onayla</button>
+                <button class="secondary confirm-btn" value="no">İptal</button>
+            </div>
+        </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script>

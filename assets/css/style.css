@@ -203,10 +203,12 @@ b{
     color: #5357B6;
     font-weight: bold;
     transition: color .2s ease;
-    svg {
-        display: inline-block;
-        margin-right: 8px;
-    }
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+
 }
 
 .reply-btn:hover{
@@ -359,6 +361,65 @@ b{
     }
   }
 
+  .btns-container{
+    display: flex;
+    gap: 30px;
+  }
+
+  .del-btn{
+    color: red;
+  }
+
+  /* Dialog */
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.overlay.d-none{
+    display: none;
+}
+
+.dialog {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    max-width: 400px;
+    text-align: center;
+}
+.dialog h2 {
+    margin-top: 0;
+}
+.btn-container {
+    margin-top: 20px;
+}
+.btn-container button {
+    padding: 10px 20px;
+    margin: 0 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.btn-container button.primary {
+    background-color: #5357B6;
+    color: #fff;
+}
+.btn-container button.secondary {
+    background-color: #1f293a;
+    color: #fff;
+}
+
+
   @media(width < 768px){
     *{
         font-size: 12px;
@@ -373,8 +434,19 @@ b{
     }
     .replying-to{
         display: flex;
+        flex-direction: column;
         *{
             font-size: 10px;
         }
     }
+    .right-side-container{
+        display: flex;
+        gap: 10px;
+        align-items: center;
+    }
+    .btns-container{
+        display: flex;
+        gap: 15px;
+    }
+    
   }

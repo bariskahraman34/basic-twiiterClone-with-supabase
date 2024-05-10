@@ -104,11 +104,12 @@ async function listPosts(){
                                     
                                 <span>${post.created_at}</span>
                             </div>
-                            <a href="#" class="reply-btn" data-commentid="${post.id}">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="13" viewBox="0 0 14 13" fill="none">
-                                    <path d="M0.227189 4.31583L5.0398 0.159982C5.46106 -0.203822 6.125 0.0915222 6.125 0.656646V2.8456C10.5172 2.89589 14 3.77618 14 7.93861C14 9.61864 12.9177 11.283 11.7214 12.1532C11.348 12.4247 10.816 12.0839 10.9536 11.6437C12.1935 7.67857 10.3655 6.62588 6.125 6.56484V8.96878C6.125 9.5348 5.46056 9.82883 5.0398 9.46545L0.227189 5.30918C-0.0755195 5.04772 -0.0759395 4.57766 0.227189 4.31583Z" fill="#5357B6"/>
-                                </svg> Cevap Yaz
-                            </a>
+                            <div class="btns-container">                            
+                                <a href="#" class="reply-btn" data-commentid="${post.id}">
+                                    <i class="fa-solid fa-reply"></i><span>Cevap Yaz</span>
+                                </a>
+                                ${userSession.session.user.id == post.user_id ? `<a href="#" data-commentid="${post.id}" class="del-btn post-del"><i class="fa-solid fa-trash-can"></i></a>`: ""}
+                            </div>
                         </div>
                         <div class="content-container">
                         <p class="content" data-commentid="">${post.content}</p>
@@ -141,9 +142,14 @@ async function listPosts(){
                                                         ${userSession.session.user.id == reply.user_id ? '<span class = "current-user">sen</span>' : ""}
                                                         <span>${reply.created_at}</span>
                                                     </div>
-                                                    <div class="replying-to">                                                
-                                                        <span>Yanıtlandı:</span>
-                                                        <strong>@${post.username}</strong>
+                                                    <div class="right-side-container">
+                                                        <div class="replying-to">
+                                                            <span>Yanıtlandı:</span>
+                                                            <strong>@${post.username}</strong>
+                                                        </div>
+                                                        <div class="del-reply">
+                                                            ${userSession.session.user.id == reply.user_id ? `<a href="#" data-replyid="${reply.id}" class="del-btn reply-del"><i class="fa-solid fa-trash-can"></i></a>`: ""}
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -154,7 +160,7 @@ async function listPosts(){
                                     </div>
                                 </div>
                             </div>
-                                `
+                        `
                     }
                 }).join('')}
                 
@@ -162,13 +168,60 @@ async function listPosts(){
         })
         const replyBtns = document.querySelectorAll('.reply-btn');
         const postBtns = document.querySelectorAll('.comment-rating-btn');
+        const replyDelBtns = document.querySelectorAll('.reply-del');
+        const postDelBtns = document.querySelectorAll('.post-del');
         postBtns.forEach(btn => btn.addEventListener('click',ratePost))
         replyBtns.forEach(btn => btn.addEventListener('click',createReplyForm));
+        replyDelBtns.forEach(btn => btn.addEventListener('click',delReply));
+        postDelBtns.forEach(btn => btn.addEventListener('click',delPost));
         const rateReplyBtns = document.querySelectorAll('.reply-rating-btn');
         rateReplyBtns.forEach(btn => btn.addEventListener('click',rateReply));
     }else{
         postsContainer.innerHTML = `<h3>Henüz burada gönderi bulunmuyor.</h3>`
     }
+}
+
+async function delReply(e){
+    e.preventDefault();
+    console.log(this.dataset.replyid);
+    const confirmBtns = document.querySelectorAll('.confirm-btn');
+    const overlay = document.querySelector('.overlay');
+    overlay.classList.remove('d-none');
+    confirmBtns.forEach(btn => btn.addEventListener('click', async () => {
+        if(btn.value == "yes"){
+            overlay.classList.add('d-none');
+            const { error } = await _supabase
+            .from('replies')
+            .delete()
+            .eq('id', Number(this.dataset.replyid));
+            console.log(error);
+            return listPosts();
+        }else{
+            overlay.classList.add('d-none');
+            return;
+        }
+    }));
+}
+
+async function delPost(e){
+    e.preventDefault();
+    const confirmBtns = document.querySelectorAll('.confirm-btn');
+    const overlay = document.querySelector('.overlay');
+    overlay.classList.remove('d-none');
+    confirmBtns.forEach(btn => btn.addEventListener('click', async () => {
+        if(btn.value == "yes"){
+            overlay.classList.add('d-none');
+            const { error } = await _supabase
+            .from('posts')
+            .delete()
+            .eq('id', Number(this.dataset.commentid));
+            console.log(error);
+            return listPosts();
+        }else{
+            overlay.classList.add('d-none');
+            return;
+        }
+    }));
 }
 
 async function updateLikeData({tableName,value,eqCol,eqVal}){
@@ -204,8 +257,8 @@ function createReplyForm(e){
     `
     <div class="new-reply-comment">
         <div class="new-comment reply-form">
-            <form id="reply-form" data-commentid="${this.dataset.commentid}">
-                <textarea required name="content" rows="3"></textarea>
+            <form id="reply-form" data-commentid="${this.dataset.commentid}" required>
+                <textarea required name="content" rows="3" required></textarea>
                 <button>Gönder</button>
             </form>
         </div>
