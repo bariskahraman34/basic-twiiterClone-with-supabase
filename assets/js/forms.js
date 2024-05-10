@@ -7,11 +7,11 @@ const container = document.querySelector('.container');
 
 const handleAuthStateChange = async (event, session) => {
     if (event === 'SIGNED_IN') {
-        let counter = 2;
+        let counter = 3;
         setInterval(() => {
             container.innerHTML = `<div class="redirect"><h3>Anasayfaya Yönlendiriliyorsunuz...  ${counter}</h3></div>`;
             counter--;
-        },800)
+        },1000)
         setTimeout(() => {
             window.location.href = "index.html";
         },3000)
