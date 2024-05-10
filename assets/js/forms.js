@@ -6,7 +6,6 @@ const loginForm = document.querySelector('#login-form');
 const container = document.querySelector('.container');
 
 const handleAuthStateChange = async (event, session) => {
-    console.log(event, session);
     if (event === 'SIGNED_IN') {
         let counter = 2;
         setInterval(() => {
@@ -35,12 +34,8 @@ if(signupForm){
               },
             },
           })
-        console.log(formObj);
-        console.log(data);
         if(!error){
             window.location.href = "/login.html";
-        }else{
-            console.log(error);
         }
     })
 }
@@ -51,9 +46,8 @@ if(loginForm){
         const formData = new FormData(e.target);
         const formObj = Object.fromEntries(formData);
         const { data, error } = await _supabase.auth.signInWithPassword(formObj);
-        console.log(data.user === null);
         if(data.session !== null){
-            window.location.href = "/index.html"
+            return handleAuthStateChange;
         }else{
             const formBox = document.querySelector('.form-box');
             const errorMessage = `

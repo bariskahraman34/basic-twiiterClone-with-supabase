@@ -54,7 +54,6 @@ if(signOut){
     signOut.addEventListener('click',async () => {
         const { error } = await _supabase.auth.signOut();
         window.location.href = "/login.html"
-        console.log(error);
     })
 }
 
@@ -74,7 +73,6 @@ async function getLoggedUser(){
 
 async function listPosts(){
     const posts = await getData("posts");
-    console.log(posts);
     const replies = await getData("replies");
     const userSession = await getLoggedUser();
     userContainer.innerHTML = `<h3>Hoşgeldin @${userSession.session.user.user_metadata.username}!</h3>`;
@@ -174,13 +172,11 @@ async function listPosts(){
 }
 
 async function updateLikeData({tableName,value,eqCol,eqVal}){
-    console.log(tableName,value,eqCol,eqVal);
     const { data , error } = await _supabase
     .from(tableName)
     .update({likes: value})
     .eq(eqCol, eqVal)
     .select()
-    console.log(data,error);
     return listPosts();
 }
 
@@ -229,7 +225,6 @@ async function sendReply(e){
     const entries = [];
     const formData = new FormData(e.target);
     const formObj = Object.fromEntries(formData);
-    console.log(formObj)
     const userSession = await getLoggedUser();
     entries.push({content:formObj.content,user_id:userSession.session.user.id,likes:0,username:userSession.session.user.user_metadata.username,created_at:createCreatedAt(),post_id:Number(e.target.dataset.commentid)});
     insertData("replies",entries);
