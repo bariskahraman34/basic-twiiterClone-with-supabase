@@ -13,6 +13,7 @@ body {
     align-items: center;
     min-height: 100vh;
     background: #1f293a;
+    overflow-x: hidden;
 }
 
 .container {
