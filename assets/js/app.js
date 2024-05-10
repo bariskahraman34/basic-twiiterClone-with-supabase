@@ -120,6 +120,9 @@ async function listPosts(){
                     </div>
                 </div>
                 ${replies.map(reply => {
+                    replies.sort(function(a,b){
+                        return b.id - a.id;
+                    })
                     if(reply.post_id == post.id){
                         return`
                                 <div class="replies-container">
