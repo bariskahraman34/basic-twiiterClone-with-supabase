@@ -369,6 +369,11 @@ b{
   .del-btn{
     color: red;
   }
+  .right-side-container{
+    display: flex;
+    align-items: center;
+    gap: 30px;
+  }
 
   /* Dialog */
 
@@ -448,5 +453,7 @@ b{
         display: flex;
         gap: 15px;
     }
-    
+    .replies-container .profile-info .user-infos {
+        display: block;
+    }
   }
