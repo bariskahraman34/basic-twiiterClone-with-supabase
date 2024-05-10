@@ -358,3 +358,23 @@ b{
         visibility: hidden;
     }
   }
+
+  @media(width < 768px){
+    *{
+        font-size: 12px;
+    }
+    .current-user{
+        font-size: 8px;
+        padding: 3px 6px;
+    }
+    .profile-info{
+        flex-wrap: wrap;
+        gap: 3px;
+    }
+    .replying-to{
+        display: flex;
+        *{
+            font-size: 10px;
+        }
+    }
+  }

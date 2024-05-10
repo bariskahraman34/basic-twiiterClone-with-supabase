@@ -168,3 +168,13 @@ p{
     text-align: center;
     color: #dc3545;
 }
+
+@media(width < 768px){
+    .container span {
+        display: none;
+    }
+    .form-box {
+        position: absolute;
+        width: 400px;
+    }
+  }

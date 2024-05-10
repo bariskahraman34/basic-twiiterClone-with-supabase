@@ -141,7 +141,7 @@ async function listPosts(){
                                                         ${userSession.session.user.id == reply.user_id ? '<span class = "current-user">sen</span>' : ""}
                                                         <span>${reply.created_at}</span>
                                                     </div>
-                                                    <div>                                                
+                                                    <div class="replying-to">                                                
                                                         <span>Yanıtlandı:</span>
                                                         <strong>@${post.username}</strong>
                                                     </div>
