@@ -445,9 +445,11 @@ b{
         }
     }
     .right-side-container{
-        display: flex;
-        gap: 10px;
-        align-items: center;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+    .right-side-container .del-reply{
+        justify-self: end;
     }
     .btns-container{
         display: flex;
